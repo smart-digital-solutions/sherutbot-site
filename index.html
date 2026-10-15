@@ -177,6 +177,16 @@
                 מערכת אוטונומית המרכזת את 2 חוקי השירות, 6 התקנות וחוזר המנכ"ל העדכני. כל שאלה מקבלת מענה מקצועי עם הפניה ישירה ומדויקת לסעיף החוק הרלוונטי.
             </p>
 
+            <!-- Official Cover Banner (Widescreen 16:9 Glassmorphism) -->
+            <div class="max-w-3xl mx-auto my-6 px-2">
+                <div class="overflow-hidden rounded-2xl shadow-xl border border-slate-200/80 dark:border-slate-800 bg-slate-900/10 dark:bg-slate-900/50">
+                    <img src="sherutbot_cover.jpg"
+                         alt="שירותבוט - מאגר ידע ובינה מלאכותית לחקיקת השירות הלאומי-אזרחי"
+                         class="w-full h-auto object-cover max-h-[280px] sm:max-h-[340px] hover:scale-[1.01] transition-transform duration-300"
+                         loading="eager" width="1200" height="675">
+                </div>
+            </div>
+
             <!-- Primary Direct Action CTA -->
             <div class="flex flex-col items-center justify-center gap-3">
                 <a id="btn-open-notebook"
@@ -197,19 +207,41 @@
             </div>
         </section>
 
-        <!-- 15 Golden Questions Section -->
+        <!-- 15 Golden Questions Section (Compact 3-Column Layout with Filter Tabs) -->
         <section class="my-10 md:my-14" aria-labelledby="faq-heading">
-            <div class="text-center mb-8">
+            <div class="text-center mb-6">
                 <h3 id="faq-heading" class="text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center justify-center gap-2">
-                    <span aria-hidden="true">💡</span> 15 שאלות לדוגמה שתוכלו לשאול במחברת
+                    <span aria-hidden="true">💡</span> שאלות מפתח לדוגמה (לחצו להעתקה)
                 </h3>
                 <p class="text-sm text-slate-600 dark:text-slate-400">
-                    לחצו על "העתק שאלה" כדי להעתיק את השאילתה המנוסחת ישירות לצ'אט ב-NotebookLM:
+                    תשובות מוסמכות לסוגיות מרכזיות בחוק – לחצו על "העתק שאלה" והמשיכו את השיחה במחברת:
                 </p>
             </div>
 
-            <div id="faq-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Category Filter Tabs (Reduces scroll dramatically) -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-6" id="faq-filter-bar" role="tablist" aria-label="סינון שאלות לפי נושא">
+                <button type="button" onclick="setFaqFilter('all', this)" class="faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-900 text-white dark:bg-brand-600 shadow-sm" role="tab" aria-selected="true">הכל (15)</button>
+                <button type="button" onclick="setFaqFilter('שעות|חופש|מחלה', this)" class="faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition-all" role="tab" aria-selected="false">שעות וחופשות</button>
+                <button type="button" onclick="setFaqFilter('כלכלה|זכויות|נסיעות|מענק', this)" class="faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition-all" role="tab" aria-selected="false">דמי כלכלה וזכויות</button>
+                <button type="button" onclick="setFaqFilter('חו&quot;ל', this)" class="faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition-all" role="tab" aria-selected="false">שירות בחו&quot;ל</button>
+                <button type="button" onclick="setFaqFilter('מפעיל|חינוך|רפואי|קרוב', this)" class="faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition-all" role="tab" aria-selected="false">גוף מפעיל ותחומים</button>
+                <button type="button" onclick="setFaqFilter('קיזוז|מגבל|עבודה|לימוד', this)" class="faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition-all" role="tab" aria-selected="false">קיזוזים והגבלות</button>
+            </div>
+
+            <!-- FAQ Grid: 3 columns on desktop, 2 on tablet, 1 on mobile -->
+            <div id="faq-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
                 <!-- Populated dynamically via JS from search_index.json -->
+            </div>
+
+            <!-- Show More / Show Less Button -->
+            <div class="text-center mt-6">
+                <button id="toggle-faq-btn" type="button" onclick="toggleFaqExpand()"
+                        class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-bold text-xs shadow-sm hover:shadow transition-all focus-visible:ring-2 focus-visible:ring-brand-500 outline-none">
+                    <span id="toggle-faq-text">✨ הצג את כל 15 שאלות הזהב</span>
+                    <svg id="toggle-faq-icon" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
@@ -390,39 +422,94 @@
             });
         }
 
-        // 4. Fetch search index & render 15 Golden Questions
+        // 4. Fetch search index & render Compact Filterable FAQs
+        let allFaqs = [];
+        let currentFaqFilter = 'all';
+        let isFaqExpanded = false;
+
         fetch('search_index.json')
             .then(res => res.json())
             .then(data => {
-                renderFAQ(data.faq || []);
+                allFaqs = data.faq || [];
+                renderFilteredFaqs();
             })
             .catch(() => {});
 
-        function renderFAQ(faqs) {
+        function renderFilteredFaqs() {
             const container = document.getElementById('faq-container');
+            const toggleBtn = document.getElementById('toggle-faq-btn');
+            const toggleText = document.getElementById('toggle-faq-text');
+            const toggleIcon = document.getElementById('toggle-faq-icon');
             if (!container) return;
-            container.innerHTML = faqs.map((f, i) => `
-                <article class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:border-brand-500 dark:hover:border-blue-500 transition-all flex flex-col justify-between">
+
+            let filtered = allFaqs;
+            if (currentFaqFilter !== 'all') {
+                const keywords = currentFaqFilter.toLowerCase().split('|');
+                filtered = allFaqs.filter(f => {
+                    const cat = (f.category || '').toLowerCase();
+                    const q = (f.question || '').toLowerCase();
+                    const a = (f.answer || '').toLowerCase();
+                    return keywords.some(k => cat.includes(k) || q.includes(k) || a.includes(k));
+                });
+                if (toggleBtn) toggleBtn.classList.add('hidden'); // Hide expand button during active category filter
+            } else {
+                if (toggleBtn) toggleBtn.classList.remove('hidden');
+                if (!isFaqExpanded) {
+                    filtered = allFaqs.slice(0, 6); // Top 6 compact questions by default
+                }
+            }
+
+            container.innerHTML = filtered.map((f, i) => `
+                <article class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:border-brand-500 dark:hover:border-blue-500 transition-all flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold">${f.category || 'כללי'}</span>
-                            <span class="text-xs text-slate-400 font-mono" aria-label="שאלה מספר ${f.id}">#${f.id}</span>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold">${f.category || 'כללי'}</span>
+                            <span class="text-[11px] text-slate-400 font-mono" aria-label="שאלה מספר ${f.id}">#${f.id}</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-white text-base mb-2 leading-snug">${f.question}</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">${f.answer}</p>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">${f.question}</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3 line-clamp-3">${f.answer}</p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="text-xs text-slate-400 truncate max-w-[200px]" title="${f.source}">מקור: ${f.source}</span>
+                    <div class="pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-[10px] text-slate-400 truncate max-w-[140px]" title="${f.source}">מקור: ${f.source}</span>
                         <button type="button"
                                 onclick="copyAndPrompt('${encodeURIComponent(f.question)}')"
                                 aria-label="העתק שאלה זו להדבקה במחברת NotebookLM"
-                                class="text-xs font-semibold text-brand-700 dark:text-blue-300 hover:text-brand-900 dark:hover:text-blue-100 flex items-center gap-1.5 bg-brand-50 dark:bg-blue-950/80 hover:bg-brand-100 dark:hover:bg-blue-900 px-3 py-1.5 rounded-xl focus-visible:ring-2 focus-visible:ring-brand-500 outline-none transition-colors">
-                            <span>העתק שאלה</span>
+                                class="text-xs font-semibold text-brand-700 dark:text-blue-300 hover:text-brand-900 dark:hover:text-blue-100 flex items-center gap-1 bg-brand-50 dark:bg-blue-950/80 hover:bg-brand-100 dark:hover:bg-blue-900 px-2.5 py-1 rounded-lg focus-visible:ring-2 focus-visible:ring-brand-500 outline-none transition-colors">
+                            <span>העתק</span>
                             <span aria-hidden="true">📋</span>
                         </button>
                     </div>
                 </article>
             `).join('');
+
+            if (toggleText && toggleIcon && currentFaqFilter === 'all') {
+                if (isFaqExpanded) {
+                    toggleText.textContent = '▲ צמצם שאלות (הצג 6 מובחרות)';
+                    toggleIcon.classList.add('rotate-180');
+                } else {
+                    toggleText.textContent = `✨ הצג את כל 15 שאלות הזהב (${allFaqs.length})`;
+                    toggleIcon.classList.remove('rotate-180');
+                }
+            }
+        }
+
+        function setFaqFilter(catFilter, btn) {
+            currentFaqFilter = catFilter;
+            const buttons = document.querySelectorAll('.faq-filter-btn');
+            buttons.forEach(b => {
+                b.className = 'faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition-all';
+                b.setAttribute('aria-selected', 'false');
+            });
+            if (btn) {
+                btn.className = 'faq-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-900 text-white dark:bg-brand-600 shadow-sm';
+                btn.setAttribute('aria-selected', 'true');
+            }
+            renderFilteredFaqs();
+        }
+
+        function toggleFaqExpand() {
+            isFaqExpanded = !isFaqExpanded;
+            renderFilteredFaqs();
         }
 
         // 5. Accessible Toast Announcement for Copy
